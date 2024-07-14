@@ -1,7 +1,9 @@
 package com.armancodeblock.carShowRoom.carController;
 
+import com.armancodeblock.carShowRoom.entity.Car;
 import com.armancodeblock.carShowRoom.entity.Owner;
 import com.armancodeblock.carShowRoom.service.OwnerService;
+import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -35,4 +37,6 @@ public class OwnerController {
         Owner reOwner=ownerService.deleteOwner(id);
         return new ResponseEntity<>(reOwner,HttpStatus.OK);
     }
+
+
 }

@@ -10,6 +10,7 @@ public interface CarService {
     //Void create(Car car);
     Car addCar(Car car);
     Car deleteCar(Long id);
-    Void carUpdate(Long id, Car car);
+    Car carUpdate(Long id, Car car);
+
 
 }

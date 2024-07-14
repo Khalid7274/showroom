@@ -38,4 +38,9 @@ public class OwnerImpl implements OwnerService{
             throw new EntityNotFoundException("Owner not found with id: "+id);
         }
     }
+
+    @Override
+    public Owner findOwnerById(Long ownerid) {
+        return null;
+    }
 }

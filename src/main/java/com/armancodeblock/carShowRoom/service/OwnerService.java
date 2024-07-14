@@ -9,4 +9,6 @@ public interface OwnerService {
     List<Owner> getAllOwner();
     Owner create(Owner owner);
     Owner deleteOwner(Long id);
+
+    Owner findOwnerById(Long ownerid);
 }
