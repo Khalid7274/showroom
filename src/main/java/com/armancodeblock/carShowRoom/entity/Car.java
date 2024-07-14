@@ -1,9 +1,6 @@
 package com.armancodeblock.carShowRoom.entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 
 
 @Entity
@@ -19,16 +16,21 @@ public class Car {
     private int year;
     private Double price;
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "owner")
+    private Owner owner;
+
     public Car() {
     }
 
-    public Car(String make, String model, String color, String registrationNumber, int year, Double price) {
+    public Car(String make, String model, String color, String registrationNumber, int year, Double price, Owner owner) {
         this.make = make;
         this.model = model;
         this.color = color;
         this.registrationNumber = registrationNumber;
         this.year = year;
         this.price = price;
+        this.owner = owner;
     }
 
     //getter and setters
@@ -87,6 +89,14 @@ public class Car {
 
     public void setPrice(Double price) {
         this.price = price;
+    }
+
+    public Owner getOwner() {
+        return owner;
+    }
+
+    public void setOwner(Owner owner) {
+        this.owner = owner;
     }
 
     @Override
