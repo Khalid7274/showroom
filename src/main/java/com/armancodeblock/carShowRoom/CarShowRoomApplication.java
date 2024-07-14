@@ -1,7 +1,9 @@
 package com.armancodeblock.carShowRoom;
 
 import com.armancodeblock.carShowRoom.entity.Car;
+import com.armancodeblock.carShowRoom.entity.Owner;
 import com.armancodeblock.carShowRoom.repo.CarRepository;
+import com.armancodeblock.carShowRoom.repo.OwnerRepository;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.CommandLineRunner;
@@ -16,11 +18,13 @@ import java.util.List;
 public class CarShowRoomApplication implements CommandLineRunner {
 	private static final Logger logger = LoggerFactory.getLogger(CarShowRoomApplication.class);
 	private final CarRepository carRepository;
+	private final OwnerRepository ownerRepository;
 
 	@Autowired
-	public CarShowRoomApplication(CarRepository carRepository) {
+	public CarShowRoomApplication(CarRepository carRepository, OwnerRepository ownerRepository) {
 		this.carRepository = carRepository;
-	}
+        this.ownerRepository = ownerRepository;
+    }
 
 	public static void main(String[] args) {
 		SpringApplication.run(CarShowRoomApplication.class, args);
@@ -29,11 +33,17 @@ public class CarShowRoomApplication implements CommandLineRunner {
 
 	@Override
 	public void run(String... args) throws Exception {
+		Owner owner1= new Owner("Rashid", "Khan");
+		Owner owner2= new Owner("Zalmai", "Rasooli");
+
+		ownerRepository.save(owner1);
+		ownerRepository.save(owner2);
+
 		List<Car> carList = Arrays.asList(
-				new Car("Tesla", "Y", "Silver", "334411", 2025, 58000.0),
-				new Car("Toyota", "Camry", "Red", "99875", 2024, 90000.0),
-				new Car("Toyota", "Corolla", "White", "34355", 2020, 80000.0),
-				new Car("Honda", "Ceto", "Black", "34355", 2018, 10000.0)
+				new Car("Tesla", "Y", "Silver", "334411", 2025, 58000.0,owner1),
+				new Car("Toyota", "Camry", "Red", "99875", 2024, 90000.0,owner2),
+				new Car("Toyota", "Corolla", "White", "34355", 2020, 80000.0,owner1),
+				new Car("Honda", "Ceto", "Black", "34355", 2018, 10000.0,owner2)
 		);
 		carRepository.saveAll(carList);
 
